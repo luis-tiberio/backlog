@@ -63,45 +63,12 @@ def get_data(driver):
     try:
         driver.get("https://spx.shopee.com.br/#/orderTracking")
         time.sleep(8)
-        driver.find_element(By.XPATH, '/html/body/div[1]/div/div[2]/div[2]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div/div/span/span/button').click()
-        time.sleep(8)
-        driver.find_element(By.XPATH, '/html[1]/body[1]/div[3]/ul[1]/li[1]/span[1]/div[1]/div[1]/span[1]').click()
-        time.sleep(8)
 
-        driver.get("https://spx.shopee.com.br/#/taskCenter/exportTaskCenter")
-        time.sleep(15)
-
-        # 👉 Mantendo o botão de download exatamente como no seu código original:
-        driver.find_element(
-            By.XPATH,
-            '/html/body/div[1]/div/div[2]/div[2]/div/div/div/div[1]/div[8]/div/div[1]/div/div[2]/div[1]/div[1]/div[2]/div/div/div/table/tbody[2]/tr[1]/td[7]/div/div/button/span'
-        ).click()
-
-        time.sleep(15)  # Aguarda o download
-        rename_downloaded_file(download_dir)
 
     except Exception as e:
         print(f"Erro ao coletar dados: {e}")
         driver.quit()
         raise
-
-def rename_downloaded_file(download_dir):
-    try:
-        files = [f for f in os.listdir(download_dir) if os.path.isfile(os.path.join(download_dir, f))]
-        files = [os.path.join(download_dir, f) for f in files]
-        newest_file = max(files, key=os.path.getctime)
-
-        current_hour = datetime.datetime.now().strftime("%H")
-        new_file_name = f"EXP-{current_hour}.csv"
-        new_file_path = os.path.join(download_dir, new_file_name)
-
-        if os.path.exists(new_file_path):
-            os.remove(new_file_path)
-
-        shutil.move(newest_file, new_file_path)
-        print(f"Arquivo salvo como: {new_file_path}")
-    except Exception as e:
-        print(f"Erro ao renomear o arquivo: {e}")
 
 def main():
     try:
