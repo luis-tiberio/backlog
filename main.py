@@ -50,7 +50,7 @@ def get_data(page):
         input1.click()
         input1.fill("")  # limpa
         input1.fill(d1)
-        page.getByText('SoC_SP_Cravinhos').click();
+        page.getByText('SoC_SP_Cravinhos').click()
         
         time.sleep(2)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
