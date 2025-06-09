@@ -50,10 +50,16 @@ def get_data(page):
         input1.click()
         input1.fill("")  # limpa
         input1.fill(d1)
-        #page.getByText('SoC_SP_Cravinhos').click()
-        dropdown_xpath = "//div[contains(@class, 'ssc-options')]//li[@title='SoC_SP_Cravinhos']"
-        page.wait_for_selector(dropdown_xpath, timeout=10000)
-        page.locator(dropdown_xpath).click()
+        page.wait_for_timeout(1000)  # Pequena pausa para abrir o dropdown
+
+        # Espera pelo dropdown com as opções visíveis
+        page.wait_for_selector("//ul[contains(@class, 'ssc-option-list-wrapper')]", timeout=10000)
+
+        # Localiza o item exato e clica — usando nth=0 para garantir
+        page.locator("//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='SoC_SP_Cravinhos']").nth(0).click()
+
+        # Verifica se a seleção apareceu no campo (opcional, para validação)
+        page.wait_for_selector("//span[@class='ssc-tag-content' and contains(., 'SoC_SP_Cravinhos')]", timeout=5000)
         
         time.sleep(2)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
