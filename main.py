@@ -41,6 +41,7 @@ def get_data(page):
         input1.click()
         input1.fill(d1)
         page.wait_for_timeout(10000)  # Pequena pausa para o dropdown carregar
+        time.sleep(10)
         
         page.locator('xpath=/html/body/span[8]/div/div/div/ul/div/div/li/text()').click()
        
