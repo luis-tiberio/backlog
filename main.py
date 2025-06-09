@@ -46,10 +46,10 @@ def get_data(page):
         """
         # Espera o item estar no DOM (sem precisar visível)
         locator = page.locator(f"//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='{d1}']").first
-        await locator.wait_for(timeout=10000)
+        locator.wait_for(timeout=10000)
         
         # Força o clique com JavaScript (mesmo se estiver invisível)
-        await page.evaluate("(el) => el.click()", await locator.element_handle())
+        page.evaluate("(el) => el.click()", locator.element_handle())
 
         page.wait_for_timeout(2000)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
