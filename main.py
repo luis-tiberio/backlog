@@ -53,7 +53,7 @@ def get_data(page):
         page.wait_for_timeout(1000)  # Pequena pausa para abrir o dropdown
 
         # Espera pelo dropdown com as opções visíveis
-        page.wait_for_selector("//ul[contains(@class, 'ssc-option-list-wrapper')]", timeout=10000)
+        #page.wait_for_selector("//ul[contains(@class, 'ssc-option-list-wrapper')]", timeout=10000)
 
         # Localiza o item exato e clica — usando nth=0 para garantir
         page.locator("//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='SoC_SP_Cravinhos']").nth(0).click()
