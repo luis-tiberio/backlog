@@ -37,26 +37,17 @@ def get_data(page):
         page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
 
         # Preenche o primeiro campo
-        input1 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[8]/div/span/span[1]/div/div').click()
+        input1 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[8]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]').click()
         input1.fill(d1)
         page.wait_for_timeout(10000)  # Pequena pausa para o dropdown carregar
         
         page.locator('xpath=/html/body/span[8]/div/div/div/ul/div/div/li/text()').click()
-        """
-        # Espera o item estar no DOM (sem precisar visível)
-        locator = page.locator(f"//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='{d1}']").first
-        locator.wait_for(timeout=10000)
-        
-        # Força o clique com JavaScript (mesmo se estiver invisível)
-        page.evaluate("(el) => el.click()", locator.element_handle())
-        """
-        
+       
         page.wait_for_timeout(2000)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
         # Preenche o segundo campo
-        input2 = page.locator('span[render="function(n){return n.current_station_name}"] span input[placeholder="Please Select"]')
-        input2.click()
+        input2 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[21]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]').click()
         input2.fill("")
         input2.fill(d2)
         page.wait_for_timeout(1000)
