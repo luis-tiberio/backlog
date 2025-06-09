@@ -42,7 +42,7 @@ def get_data(page):
         input1.fill("SoC_SP_Cravinhos")
         time.sleep(2)
         # Clica no item da lista suspensa
-        page.locator('li.ssc-option[title="SoC_SP_Cravinhos"]').click()
+        page.locator("li.ssc-option[title='SoC_SP_Cravinhos']").first.click()
 
         # Campo 2
         input2 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[21]/div/span/span[1]/div/div/div/span/input')
