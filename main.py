@@ -32,53 +32,43 @@ def get_data(page):
         d1 = 'SoC_SP_Cravinhos'
         d2 = 'SOC_Received'
 
-        page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
+        # Acessa a página
+        page.goto("https://spx.shopee.com.br/#/dashboard/facility-soc/historical-data", timeout=60000)
 
-        """
         # Preenche o primeiro campo
         input1 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[8]/div/span/span[1]/div/div/div/span/input')
         input1.click()
         input1.fill("")  # limpa
-        input1.fill("SoC_SP_Cravinhos")
-        time.sleep(2)
-        # Clica no item da lista suspensa
-        page.locator('li.ssc-option[title="SoC_SP_Cravinhos"]').click()
-        """
-        # Campo 1
-        page.wait_for_selector('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span', timeout=45000)
-        input1 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[8]/div/span/span[1]/div/div/div/span/input')
-        input1.click()
-        input1.fill("")  # limpa
         input1.fill(d1)
-        page.wait_for_timeout(1000)  # Pequena pausa para abrir o dropdown
+        time.sleep(2)  # Pequena pausa para o dropdown carregar
 
-        # Espera pelo dropdown com as opções visíveis
-        #page.wait_for_selector("//ul[contains(@class, 'ssc-option-list-wrapper')]", timeout=10000)
+        # Aguarda o dropdown aparecer
+        page.wait_for_selector("//ul[contains(@class, 'ssc-option-list-wrapper')]", state="visible", timeout=10000)
 
-        # Localiza o item exato e clica — usando nth=0 para garantir
-        page.locator("//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='SoC_SP_Cravinhos']").nth(0).click()
+        # Aguarda e clica na opção específica
+        option = page.locator("//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='SoC_SP_Cravinhos']")
+        option.wait_for(state="visible", timeout=10000)
+        option.first.click()
 
-        # Verifica se a seleção apareceu no campo (opcional, para validação)
-        page.wait_for_selector("//span[@class='ssc-tag-content' and contains(., 'SoC_SP_Cravinhos')]", timeout=5000)
-        
         time.sleep(2)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
-        
-        # Campo 2
+
+        # Repita o processo para o segundo campo (d2), ajustando conforme necessário
         input2 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[21]/div/span/span[1]/div/div/div/span/input')
         input2.click()
-        input2.fill("")
+        input2.fill("")  # limpa
         input2.fill(d2)
         time.sleep(2)
-        page.locator('xpath=/html/body/span[7]/div/div/div/ul/li[1]/span/b').click()
+        page.wait_for_selector("//ul[contains(@class, 'ssc-option-list-wrapper')]", state="visible", timeout=10000)
+        page.locator("//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='SOC_Received']").first.click()
         time.sleep(2)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
-        # Botão pesquisar
+        # Clica no botão de pesquisa
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[25]/button[1]').click()
         time.sleep(4)
 
-        # Captura do dado
+        # Coleta o dado
         first_value = page.inner_text('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[10]/div/div[3]/div/span[1]')
         data.append(first_value)
 
