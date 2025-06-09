@@ -30,8 +30,8 @@ def login(page):
 def get_data(page):
     data = []
     try:
-        d1 = 'SoC_SP_Cravinhos'
-        d2 = 'SOC_Received'
+        d1 = "SoC_SP_Cravinhos"
+        d2 = "SOC_Received"
 
         # Acessa a página
         page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
