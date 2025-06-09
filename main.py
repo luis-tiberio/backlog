@@ -32,7 +32,7 @@ def get_data(page):
         d1 = 'SoC_SP_Cravinhos'
         d2 = 'SOC_Received'
 
-        page.goto("https://spx.shopee.com.br/#/dashboard/facility-soc/historical-data", timeout=60000)
+        page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
 
         # Campo 1
         page.wait_for_selector('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span', timeout=45000)
