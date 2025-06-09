@@ -51,7 +51,9 @@ def get_data(page):
         input1.fill("")  # limpa
         input1.fill(d1)
         #page.getByText('SoC_SP_Cravinhos').click()
-        page.locator("li.ssc-option", has_text="SoC_SP_Cravinhos").first.click()
+        dropdown_xpath = "//div[contains(@class, 'ssc-options')]//li[@title='SoC_SP_Cravinhos']"
+        page.wait_for_selector(dropdown_xpath, timeout=10000)
+        page.locator(dropdown_xpath).click()
         
         time.sleep(2)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
