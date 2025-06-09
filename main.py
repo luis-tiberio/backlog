@@ -37,34 +37,28 @@ def get_data(page):
         page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
 
         # Preenche o primeiro campo
+        time.sleep(5)
         input1 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[8]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]')
         input1.click()
         input1.fill(d1)
-        page.wait_for_timeout(10000)  # Pequena pausa para o dropdown carregar
-        time.sleep(10)
+        time.sleep(5)
         
-        page.locator('xpath=/html/body/span[8]/div/div/div/ul/div/div/li/text()').click()
+        page.locator('xpath=/html[1]/body[1]/span[6]/div[1]/div[1]/div[1]/ul[1]/div[1]/div[1]/li[1]').click()
        
         page.wait_for_timeout(2000)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
+        time.sleep(5)
         # Preenche o segundo campo
         input2 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[21]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]')
         input2.click()
-        input2.fill("")
         input2.fill(d2)
-        page.wait_for_timeout(1000)
+        time.sleep(5)
 
-        # Espera o dropdown estar visível para o segundo campo
-        page.wait_for_selector("//div[contains(@class, 'ssc-options')]", state="visible", timeout=15000)
+        page.locator('xpath=/html[1]/body[1]/span[4]/div[1]/div[1]/div[1]/ul[1]/li[1]/span[1]/b[1]').click()
+        time.sleep(5)
 
-        # Espera a opção específica estar visível e clica
-        option2 = page.locator("//div[contains(@class, 'ssc-options')]//li[@title='SOC_Received']").first
-        option2.wait_for(state="visible", timeout=15000)
-        option2.click()
-
-        page.wait_for_timeout(2000)
-        page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
+        page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/span[2]/span[1]/span[1]').click()
 
         # Clica no botão de pesquisa
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[25]/button[1]').click()
