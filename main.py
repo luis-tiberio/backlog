@@ -5,6 +5,7 @@ import time
 import datetime
 import os
 import pytz
+import asyncio
 
 timezone = pytz.timezone('America/Sao_Paulo')
 
@@ -33,7 +34,7 @@ def get_data(page):
         d2 = 'SOC_Received'
 
         # Acessa a página
-        page.goto("https://spx.shopee.com.br/#/orderTracking timeout=60000, wait_until="networkidle")
+        page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
 
         # Preenche o primeiro campo
         input1 = page.locator('span[render="function(n){return n.current_station_name}"] span input[placeholder="Please Select"]')
