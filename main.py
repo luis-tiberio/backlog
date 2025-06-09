@@ -44,20 +44,12 @@ def get_data(page):
         """
         page.locator('xpath=/html[1]/body[1]/span[8]/div[1]/div[1]/div[1]/ul[1]/div[1]/div[1]/li[1]').click()
         """
-        option = page.locator(f"//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='{d1}']").first
-
-        # Espera o elemento estar no DOM (não precisa estar visível ainda)
-        option.wait_for(timeout=10000)
+        # Espera o item estar no DOM (sem precisar visível)
+        locator = page.locator(f"//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='{d1}']").first
+        await locator.wait_for(timeout=10000)
         
-        # Força scroll com JS
-        page.evaluate("el => el.scrollIntoView({behavior: 'instant', block: 'center'})", option)
-        
-        # Espera o elemento ficar visível após scroll
-        option.wait_for(state="visible", timeout=5000)
-        
-        # Agora clica
-        option.click()
-
+        # Força o clique com JavaScript (mesmo se estiver invisível)
+        await page.evaluate("(el) => el.click()", await locator.element_handle())
 
         page.wait_for_timeout(2000)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
