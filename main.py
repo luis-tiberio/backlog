@@ -41,7 +41,7 @@ def get_data(page):
         input1.fill("")
         input1.fill(d1)
         time.sleep(2)
-        page.locator('xpath=/html/body/span[7]/div/div/div/ul/div/div').click()
+        page.locator('xpath=//li[@class='ssc-option ssc-option-highlighted ssc-option-multiple-concise']').click()
         time.sleep(2)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
