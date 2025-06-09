@@ -37,19 +37,12 @@ def get_data(page):
         page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
 
         # Preenche o primeiro campo
-        input1 = page.locator('span[render="function(n){return n.current_station_name}"] span input[placeholder="Please Select"]')
+        input1 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[8]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]')
         input1.click()
-        input1.fill("")
         input1.fill(d1)
-        page.wait_for_timeout(1000)  # Pequena pausa para o dropdown carregar
+        page.wait_for_timeout(5000)  # Pequena pausa para o dropdown carregar
+        page.locator('xpath=/html[1]/body[1]/span[8]/div[1]/div[1]/div[1]/ul[1]/div[1]/div[1]/li[1]').click()
 
-        # Espera o dropdown estar visível
-        page.wait_for_selector("//div[contains(@class, 'ssc-options')]", state="visible", timeout=15000)
-
-        # Espera a opção específica estar visível e clica
-        option1 = page.locator("//div[contains(@class, 'ssc-options')]//li[@title='SoC_SP_Cravinhos']").first
-        option1.wait_for(state="visible", timeout=15000)
-        option1.click()
 
         page.wait_for_timeout(2000)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
