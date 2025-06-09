@@ -62,13 +62,12 @@ def get_data(page):
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
         # Repita o processo para o segundo campo (d2), ajustando conforme necessário
-        input2 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[21]/div/span/span[1]/div/div/div/span/input')
+        input2 = page.locator('span[render="function(n){return n.current_station_name}"] span input[placeholder="Please Select"]')
         input2.click()
         input2.fill("")  # limpa
         input2.fill(d2)
         time.sleep(2)
-        page.wait_for_selector("//ul[contains(@class, 'ssc-option-list-wrapper')]", state="visible", timeout=10000)
-        page.locator("//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='SOC_Received']").first.click()
+        page.locator('li[class="ssc-option ssc-option-highlighted ssc-option-multiple-concise"]').first.click()
         time.sleep(2)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
