@@ -33,7 +33,7 @@ def get_data(page):
         d2 = 'SOC_Received'
 
         # Acessa a página
-        page.goto("https://spx.shopee.com.br/#/dashboard/facility-soc/historical-data", timeout=60000)
+        page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
 
         # Preenche o primeiro campo
         input1 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[8]/div/span/span[1]/div/div/div/span/input')
