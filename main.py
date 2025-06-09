@@ -37,7 +37,8 @@ def get_data(page):
         page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
 
         # Preenche o primeiro campo
-        input1 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[8]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]').click()
+        input1 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[8]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]')
+        input1.click()
         input1.fill(d1)
         page.wait_for_timeout(10000)  # Pequena pausa para o dropdown carregar
         
@@ -47,7 +48,8 @@ def get_data(page):
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
         # Preenche o segundo campo
-        input2 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[21]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]').click()
+        input2 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[21]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]')
+        input2.click()
         input2.fill("")
         input2.fill(d2)
         page.wait_for_timeout(1000)
