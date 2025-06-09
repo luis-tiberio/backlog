@@ -38,17 +38,25 @@ def get_data(page):
         # Preenche o primeiro campo
         input1 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[8]/div/span/span[1]/div/div/div/span/input')
         input1.click()
-        input1.fill("")  # limpa
+
+        # Digita o texto no campo de input
         input1.fill(d1)
-        time.sleep(2)  # Pequena pausa para o dropdown carregar
+        page.wait_for_timeout(1000)  # Espera para dropdown aparecer
 
-        # Aguarda o dropdown aparecer
-        page.wait_for_selector("//ul[contains(@class, 'ssc-option-list-wrapper')]", state="visible", timeout=10000)
+        # Seleciona o item correto no dropdown e força a rolagem
+        option = page.locator(f"//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='{d1}']").first
 
-        # Aguarda e clica na opção específica
-        option = page.locator("//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='SoC_SP_Cravinhos']")
-        option.wait_for(state="visible", timeout=10000)
-        option.first.click()
+        # Espera o elemento estar disponível no DOM (mas ainda pode não estar visível)
+        option.wait_for(timeout=10000)
+
+        # Faz o scroll até o elemento
+        page.evaluate("(el) => el.scrollIntoView()", option)
+        
+        # Aguarda visibilidade antes de clicar
+        option.wait_for(state="visible", timeout=5000)
+        
+        # Clica no item
+        option.click()
 
         time.sleep(2)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
