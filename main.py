@@ -35,7 +35,7 @@ def get_data(page):
         page.goto("https://spx.shopee.com.br/#/dashboard/facility-soc/historical-data", timeout=60000)
 
         # Campo 1
-        page.wait_for_selector('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[8]/div/span/span[1]/div/div/div/span/input', timeout=45000)
+        page.wait_for_selector('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span', timeout=45000)
         input1 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[8]/div/span/span[1]/div/div/div/span/input')
         input1.click()
         input1.fill("")
