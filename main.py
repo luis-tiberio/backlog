@@ -36,27 +36,10 @@ def get_data(page):
         page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
 
         # Preenche o primeiro campo
-        input1 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[8]/div/span/span[1]/div/div/div/span/input')
-        input1.click()
-
-        # Digita o texto no campo de input
+        input1 = page.locator('span[render="function(n){return n.current_station_name}"] span input[placeholder="Please Select"]').click()
         input1.fill(d1)
         page.wait_for_timeout(1000)  # Espera para dropdown aparecer
-
-        # Seleciona o item correto no dropdown e força a rolagem
-        option = page.locator(f"//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='{d1}']").first
-
-        # Espera o elemento estar disponível no DOM (mas ainda pode não estar visível)
-        option.wait_for(timeout=10000)
-
-        # Faz o scroll até o elemento
-        page.evaluate("(el) => el.scrollIntoView()", option)
-        
-        # Aguarda visibilidade antes de clicar
-        option.wait_for(state="visible", timeout=5000)
-        
-        # Clica no item
-        option.click()
+        page.locator('li[class="ssc-option ssc-option-highlighted ssc-option-multiple-concise"]').click()
 
         time.sleep(2)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
