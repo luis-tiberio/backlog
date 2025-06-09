@@ -33,35 +33,51 @@ def get_data(page):
         d2 = 'SOC_Received'
 
         # Acessa a página
-        page.goto("https://spx.shopee.com.br/#/orderTracking", timeout=60000)
+        page.goto("[invalid url, do not cite] timeout=60000, wait_until="networkidle")
 
         # Preenche o primeiro campo
-        input1 = page.locator('span[render="function(n){return n.current_station_name}"] span input[placeholder="Please Select"]').click()
+        input1 = page.locator('span[render="function(n){return n.current_station_name}"] span input[placeholder="Please Select"]')
+        input1.click()
+        input1.fill("")
         input1.fill(d1)
-        page.wait_for_timeout(1000)  # Espera para dropdown aparecer
-        page.locator('li[class="ssc-option ssc-option-highlighted ssc-option-multiple-concise"]').click()
+        page.wait_for_timeout(1000)  # Pequena pausa para o dropdown carregar
 
-        time.sleep(2)
+        # Espera o dropdown estar visível
+        page.wait_for_selector("//div[contains(@class, 'ssc-options')]", state="visible", timeout=15000)
+
+        # Espera a opção específica estar visível e clica
+        option1 = page.locator("//div[contains(@class, 'ssc-options')]//li[@title='SoC_SP_Cravinhos']").first
+        option1.wait_for(state="visible", timeout=15000)
+        option1.click()
+
+        page.wait_for_timeout(2000)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
-        # Repita o processo para o segundo campo (d2), ajustando conforme necessário
+        # Preenche o segundo campo
         input2 = page.locator('span[render="function(n){return n.current_station_name}"] span input[placeholder="Please Select"]')
         input2.click()
-        input2.fill("")  # limpa
+        input2.fill("")
         input2.fill(d2)
-        time.sleep(2)
-        page.locator('li[class="ssc-option ssc-option-highlighted ssc-option-multiple-concise"]').first.click()
-        time.sleep(2)
+        page.wait_for_timeout(1000)
+
+        # Espera o dropdown estar visível para o segundo campo
+        page.wait_for_selector("//div[contains(@class, 'ssc-options')]", state="visible", timeout=15000)
+
+        # Espera a opção específica estar visível e clica
+        option2 = page.locator("//div[contains(@class, 'ssc-options')]//li[@title='SOC_Received']").first
+        option2.wait_for(state="visible", timeout=15000)
+        option2.click()
+
+        page.wait_for_timeout(2000)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
         # Clica no botão de pesquisa
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[25]/button[1]').click()
-        time.sleep(4)
+        page.wait_for_timeout(4000)
 
         # Coleta o dado
         first_value = page.inner_text('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[10]/div/div[3]/div/span[1]')
         data.append(first_value)
-
     except Exception as e:
         print(f"Erro ao coletar dados: {e}")
         raise
