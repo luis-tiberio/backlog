@@ -41,8 +41,8 @@ def get_data(page):
         input1.click()
         input1.fill(d1)
         page.wait_for_timeout(10000)  # Pequena pausa para o dropdown carregar
-        """
-        page.locator('xpath=/html[1]/body[1]/span[8]/div[1]/div[1]/div[1]/ul[1]/div[1]/div[1]/li[1]').click()
+        
+        page.locator('xpath=/html/body/span[8]/div/div/div/ul/div/div/li/text()').click()
         """
         # Espera o item estar no DOM (sem precisar visível)
         locator = page.locator(f"//ul[contains(@class, 'ssc-option-list-wrapper')]//li[@title='{d1}']").first
@@ -50,7 +50,8 @@ def get_data(page):
         
         # Força o clique com JavaScript (mesmo se estiver invisível)
         page.evaluate("(el) => el.click()", locator.element_handle())
-
+        """
+        
         page.wait_for_timeout(2000)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
