@@ -50,12 +50,7 @@ def get_data(page):
         input1.click()
         input1.fill("")  # limpa
         input1.fill(d1)
-        
-        # Aguarda a sugestão aparecer
-        page.wait_for_selector("li.ssc-option[title='SoC_SP_Cravinhos']", state="visible", timeout=10000)
-        
-        # Clica na primeira opção visível
-        page.locator("li.ssc-option[title='SoC_SP_Cravinhos']").first.click()
+        await page.getByText('SoC_SP_Cravinhos').click();
         
         time.sleep(2)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
