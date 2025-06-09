@@ -43,19 +43,7 @@ def get_data(page):
         time.sleep(2)
         # Clica no item da lista suspensa
         page.locator('li.ssc-option[title="SoC_SP_Cravinhos"]').click()
-"""
 
-        # Campo 1
-        page.wait_for_selector('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span', timeout=45000)
-        input1 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[8]/div/span/span[1]/div/div/div/span/input')
-        input1.click()
-        input1.fill("")
-        input1.fill(d1)
-        time.sleep(2)
-        page.locator('xpath=//li[@class="ssc-option ssc-option-highlighted ssc-option-multiple-concise"]').click()
-        time.sleep(2)
-        page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
-"""
         # Campo 2
         input2 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[21]/div/span/span[1]/div/div/div/span/input')
         input2.click()
