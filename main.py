@@ -62,7 +62,7 @@ def get_data(page):
 
         # Clica no botão de pesquisa
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[25]/button[1]').click()
-        page.wait_for_timeout(4000)
+        page.wait_for_timeout(10000)
 
         # Coleta o dado
         first_value = page.inner_text('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[10]/div/div[3]/div/span[1]')
