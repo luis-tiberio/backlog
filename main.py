@@ -38,7 +38,7 @@ def get_data(page):
 
         # Preenche o primeiro campo
         time.sleep(5)
-        input1 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[8]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]')
+        input1 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[9]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]')
         input1.click()
         input1.fill(d1)
         time.sleep(5)
