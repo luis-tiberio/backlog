@@ -43,7 +43,7 @@ def get_data(page):
         input1.fill(d1)
         time.sleep(5)
         
-        page.locator('xpath=/html[1]/body[1]/span[8]/div[1]/div[1]/div[1]/ul[1]/div[1]/div[1]').click()
+        page.locator('xpath=/html[1]/body[1]/span[8]/div[1]/div[1]/div[1]/ul[1]/div[1]/div[1]/li[1]').click()
        
         page.wait_for_timeout(2000)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
