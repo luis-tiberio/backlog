@@ -43,25 +43,25 @@ def get_data(page):
         input1.fill(d1)
         time.sleep(5)
         
-        page.locator('xpath=/html[1]/body[1]/span[8]/div[1]/div[1]/div[1]/ul[1]/div[1]/div[1]/li[1]').click()
+        page.locator('xpath=/html/body/span[6]/div/div/div/ul/div/div/li').click()
        
         page.wait_for_timeout(2000)
         page.locator('xpath=/html/body/div[1]/div/div[2]/div[1]/div[1]/span[2]/span[1]/span').click()
 
         time.sleep(5)
         # Preenche o segundo campo
-        input2 = page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[6]/form[1]/div[21]/div[1]/span[1]/span[1]/div[1]/div[1]/div[1]/span[1]/input[1]')
+        input2 = page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[22]/div/span/span[1]/div/div/div/span/input')
         input2.click()
         input2.fill(d2)
         time.sleep(5)
 
-        page.locator('xpath=/html[1]/body[1]/span[4]/div[1]/div[1]/div[1]/ul[1]/li[1]/span[1]/b[1]').click()
+        page.locator('xpath=/html/body/span[4]/div/div/div/ul/li[1]').click()
         time.sleep(5)
 
         page.locator('xpath=/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/span[2]/span[1]/span[1]').click()
 
         # Clica no botão de pesquisa
-        page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[25]/button[1]').click()
+        page.locator('xpath=/html/body/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div[6]/form/div[26]/button[1]').click()
         page.wait_for_timeout(10000)
 
         # Coleta o dado
@@ -89,7 +89,7 @@ def update_google_sheets(first_value):
 
 def main():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, args=["--no-sandbox", "--disable-dev-shm-usage"])
+        browser = p.chromium.launch(headless=False, args=["--no-sandbox", "--disable-dev-shm-usage"])
         context = browser.new_context(accept_downloads=True)
         page = context.new_page()
 
