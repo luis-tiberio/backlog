@@ -89,7 +89,7 @@ def update_google_sheets(first_value):
 
 def main():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, args=["--no-sandbox", "--disable-dev-shm-usage"])
+        browser = p.chromium.launch(headless=True, args=["--no-sandbox", "--disable-dev-shm-usage"])
         context = browser.new_context(accept_downloads=True)
         page = context.new_page()
 
